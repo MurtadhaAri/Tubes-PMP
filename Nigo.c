@@ -44,6 +44,12 @@ void tambah(node ** head, int num) {
     Serial.println(newNode->jumlah_stock);
     while(Serial.available() > 0) Serial.read(); // Clear trailing newline
 
+    Serial.print("Masukkan Lokasi Penyimpanan: ");
+    while (Serial.available() == 0);
+    int lenLok = Serial.readBytesUntil('\n', newNode->lokasi_penyimpanan, 49);
+    newNode->lokasi_penyimpanan[lenLok] = '\0';
+    Serial.println(newNode->lokasi_penyimpanan);
+
     Serial.print("Masukkan Status: ");
     while (Serial.available() == 0);
     newNode->status = (short int)Serial.parseInt();
