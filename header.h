@@ -4,7 +4,7 @@
 typedef struct node {
     int id_barang;
     char nama_barang[100];
-    char kategori [20];
+    int kategori;
     int jumlah_stock;
     short int status;
     char PIC[30];

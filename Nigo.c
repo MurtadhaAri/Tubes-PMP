@@ -30,9 +30,17 @@ void tambah(node ** head) {
     fgets(newNode->nama_barang, 100, stdin);
     newNode->nama_barang[strcspn(newNode->nama_barang, "\n")] = '\0'; 
 
-    printf("Masukkan Kategori: ");
-    fgets(newNode->kategori, 20, stdin);
-    newNode->kategori[strcspn(newNode->kategori, "\n")] = '\0';
+    while (1) {
+        printf("Masukkan Kategori (0 = Komponen, 1 = Alat, 2 = Lainnya): ");
+        scanf("%hd", &newNode->status); 
+        while(getchar() != '\n');
+
+        if (newNode->status == 1 || newNode->status == 2 || newNode->status == 0) {
+            break;
+        } else {
+            printf("Masukkan 0, 1, atau 2\n\n");
+        }
+    } 
 
     while(1){
         printf("Masukkan Jumlah Stok: ");
@@ -48,7 +56,7 @@ void tambah(node ** head) {
     newNode->lokasi_penyimpanan[strcspn(newNode->lokasi_penyimpanan, "\n")] = '\0';
 
     while (1) {
-        printf("Masukkan Status (1 = Tersedia, 2 = Habis): ");
+        printf("Masukkan Status (1 = Tersedia, 0 = Habis): ");
         scanf("%hd", &newNode->status); 
         while(getchar() != '\n');
 
@@ -139,6 +147,9 @@ void UpdateStock(node **head) {
     if (pilihan == 1) {
         current->jumlah_stock += kuantitas;
         printf("Berhasil menambah stok. Stok baru: %d\n", current->jumlah_stock);
+        if (current->status == 0){
+            current->status == 1;
+        }
     } 
     else if (pilihan == 2) {
         if (current->jumlah_stock < kuantitas) {
@@ -146,6 +157,9 @@ void UpdateStock(node **head) {
         } else {
             current->jumlah_stock -= kuantitas;
             printf("Berhasil mengurangi stok. Stok baru: %d\n", current->jumlah_stock);
+            if (current->jumlah_stock == 0){
+                current->status == 0;
+            }
         }
     }
     printf("\n");
