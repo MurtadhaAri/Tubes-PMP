@@ -3,13 +3,13 @@
 
 typedef struct node {
     int id_barang;
-    char nama_barang[100];
-    char kategori [20];
+    char nama_barang[30];
+    char kategori [15];
     int jumlah_stock;
     short int status;
-    char PIC[30];
-    char PemilikBarang[30];
-    char lokasi_penyimpanan[60];
+    char PIC[15];
+    char PemilikBarang[15];
+    char lokasi_penyimpanan[15];
     struct node * next;
 }node;
 
