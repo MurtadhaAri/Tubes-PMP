@@ -7,9 +7,9 @@ typedef struct node {
     int kategori;
     int jumlah_stock;
     short int status;
-    char PIC[30];
-    char PemilikBarang[30];
-    char lokasi_penyimpanan[60];
+    char PIC[15];
+    char PemilikBarang[15];
+    char lokasi_penyimpanan[15];
     struct node * next;
 }node;
 

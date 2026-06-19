@@ -23,19 +23,13 @@ void Display (node **head){
         printf("Jumlah Stock barang : %d\n", current->jumlah_stock);
 
         printf("Status              :  ");
-        switch (current->status)
-        {
-        case 0: printf("Habis\n");
-            break;
-        case 1: printf("Tersedia\n");
-            break;
-        case 2: printf("Dipinjam\n");
-            break;
-        case 3: printf("Rusak\n");
-            break;            
-        
-        default: printf("Status Tidak Dikenal (%d)\n", current->status);
-            break;
+        while(current->status!=NULL){
+            if(current->status==0)printf("Habis\n");
+            else if(current->status==1)printf("Tersedia\n");
+            else if(current->status==2)printf("Dipinjam\n");
+            else if(current->status==3)printf("Rusak\n");
+            else printf("Status Tidak Diketahui (%d)\n", current->status);
+
         }
         printf("PIC                 : %s\n", current->PIC);
         printf("Pemilik Barang      : %s\n", current->PemilikBarang);       
