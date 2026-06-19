@@ -32,10 +32,10 @@ void tambah(node ** head) {
 
     while (1) {
         printf("Masukkan Kategori (0 = Komponen, 1 = Alat, 2 = Lainnya): ");
-        scanf("%hd", &newNode->status); 
+        scanf("%hd", &newNode->kategori); 
         while(getchar() != '\n');
 
-        if (newNode->status == 1 || newNode->status == 2 || newNode->status == 0) {
+        if (newNode->kategori == 1 || newNode->kategori == 2 || newNode->kategori == 0) {
             break;
         } else {
             printf("Masukkan 0, 1, atau 2\n\n");
