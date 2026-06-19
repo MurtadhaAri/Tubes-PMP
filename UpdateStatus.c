@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void update_status_rusak(node **head) {
+void UpdateStatus(node **head) {
     int id;
     printf("Masukkan ID item yang mau diupdate rusak: ");
     scanf("%d", &id);
