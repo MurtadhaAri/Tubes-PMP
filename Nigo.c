@@ -1,13 +1,13 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void tambah(node ** head, int num) {
     // cek duplikat
     node *current = *head;
     while (current != NULL) {
         if (current->id_barang == num) {
-            Serial.println("Error: ID duplikat!");
+            printf("Error: ID duplikat!\n");
             return;
         }
         current = current->next;
@@ -16,53 +16,42 @@ void tambah(node ** head, int num) {
     // alokasi memori
     node *newNode = (node*)malloc(sizeof(node));
     if (newNode == NULL) {
-        Serial.println("Error: Kapasitas memori hampir habis!");
+        printf("Error: Kapasitas memori hampir habis!\n");
         return;
     }
 
     newNode->id_barang = num;
     
-    Serial.print("Masukkan Nama Barang: ");
-    while (Serial.available() == 0); 
-    int lenNama = Serial.readBytesUntil('\n', newNode->nama_barang, 99); 
-    newNode->nama_barang[lenNama] = '\0'; 
-    Serial.println(newNode->nama_barang);
+    // Asumsi: Jika fungsi tambah() dipanggil tepat setelah input scanf di menu utama,
+    // mungkin perlu membersihkan buffer input (sisa '\n') terlebih dahulu sebelum pemanggilan fungsi ini.
 
-    Serial.print("Masukkan Kategori: ");
-    while (Serial.available() == 0);
-    int lenKat = Serial.readBytesUntil('\n', newNode->kategori, 19);
-    newNode->kategori[lenKat] = '\0';
-    Serial.println(newNode->kategori);
+    printf("Masukkan Nama Barang: ");
+    fgets(newNode->nama_barang, 100, stdin);
+    newNode->nama_barang[strcspn(newNode->nama_barang, "\n")] = '\0'; // Hapus enter bawaan fgets
 
-    Serial.print("Masukkan Jumlah Stok: ");
-    while (Serial.available() == 0);
-    newNode->jumlah_stock = Serial.parseInt();
-    Serial.println(newNode->jumlah_stock);
-    while(Serial.available() > 0) Serial.read();
+    printf("Masukkan Kategori: ");
+    fgets(newNode->kategori, 20, stdin);
+    newNode->kategori[strcspn(newNode->kategori, "\n")] = '\0';
 
-    Serial.print("Masukkan Lokasi Penyimpanan: ");
-    while (Serial.available() == 0);
-    int lenLok = Serial.readBytesUntil('\n', newNode->lokasi_penyimpanan, 49);
-    newNode->lokasi_penyimpanan[lenLok] = '\0';
-    Serial.println(newNode->lokasi_penyimpanan);
+    printf("Masukkan Jumlah Stok: ");
+    scanf("%d", &newNode->jumlah_stock);
+    while(getchar() != '\n'); // Bersihkan sisa karakter enter di buffer setelah scanf
 
-    Serial.print("Masukkan Status: ");
-    while (Serial.available() == 0);
-    newNode->status = (short int)Serial.parseInt();
-    Serial.println(newNode->status);
-    while(Serial.available() > 0) Serial.read(); 
+    printf("Masukkan Lokasi Penyimpanan: ");
+    fgets(newNode->lokasi_penyimpanan, 50, stdin);
+    newNode->lokasi_penyimpanan[strcspn(newNode->lokasi_penyimpanan, "\n")] = '\0';
 
-    Serial.print("Masukkan PIC: ");
-    while (Serial.available() == 0);
-    int lenPIC = Serial.readBytesUntil('\n', newNode->PIC, 29);
-    newNode->PIC[lenPIC] = '\0';
-    Serial.println(newNode->PIC);
+    printf("Masukkan Status: ");
+    scanf("%hd", &newNode->status); // %hd untuk short int
+    while(getchar() != '\n'); // Bersihkan sisa karakter enter di buffer
 
-    Serial.print("Masukkan Pemilik Barang: ");
-    while (Serial.available() == 0);
-    int lenPemilik = Serial.readBytesUntil('\n', newNode->PemilikBarang, 29);
-    newNode->PemilikBarang[lenPemilik] = '\0';
-    Serial.println(newNode->PemilikBarang);
+    printf("Masukkan PIC: ");
+    fgets(newNode->PIC, 30, stdin);
+    newNode->PIC[strcspn(newNode->PIC, "\n")] = '\0';
+
+    printf("Masukkan Pemilik Barang: ");
+    fgets(newNode->PemilikBarang, 30, stdin);
+    newNode->PemilikBarang[strcspn(newNode->PemilikBarang, "\n")] = '\0';
 
     newNode->next = NULL;
 
@@ -76,26 +65,21 @@ void tambah(node ** head, int num) {
         current->next = newNode;
     }
 
-    Serial.println("Data barang berhasil ditambahkan!\n");
+    printf("Data barang berhasil ditambahkan!\n\n");
 }
 
-// void UpdateStock (node **head){ 
-
-// } 
-
-void UpdateStock(node **head) { // all (nigo)
+void UpdateStock(node **head) { 
     // kasus data kosong
     if (*head == NULL) {
-        Serial.println("Error: Data kosong! Tidak ada barang di dalam database.");
+        printf("Error: Data kosong! Tidak ada barang di dalam database.\n");
         return; 
     }
 
     // input id
-    Serial.print("Masukkan ID Barang yang ingin diupdate: ");
-    while (Serial.available() == 0); // Wait for input
-    int targetID = Serial.parseInt();
-    Serial.println(targetID); // Echo back to screen
-    while(Serial.available() > 0) Serial.read(); // Clear trailing newline
+    printf("Masukkan ID Barang yang ingin diupdate: ");
+    int targetID;
+    scanf("%d", &targetID);
+    while(getchar() != '\n'); // Bersihkan buffer
 
     // cari id
     node *current = *head;
@@ -108,41 +92,39 @@ void UpdateStock(node **head) { // all (nigo)
 
     // kasus id tidak ada
     if (current == NULL) {
-        Serial.println("Error: ID tidak ditemukan!");
+        printf("Error: ID tidak ditemukan!\n");
         return;
     }
 
     // Display stok 
-    Serial.print("Barang: "); Serial.println(current->nama_barang);
-    Serial.print("Stok Saat Ini: "); Serial.println(current->jumlah_stock);
+    printf("Barang: %s\n", current->nama_barang);
+    printf("Stok Saat Ini: %d\n", current->jumlah_stock);
 
     // input pilihan update
-    Serial.println("Pilih Operasi:");
-    Serial.println("1. Tambah Stok (Increase)");
-    Serial.println("2. Kurangi Stok (Decrease)");
-    Serial.print("Pilihan Anda (1/2): ");
+    printf("Pilih Operasi:\n");
+    printf("1. Tambah Stok (Increase)\n");
+    printf("2. Kurangi Stok (Decrease)\n");
+    printf("Pilihan Anda (1/2): ");
     
-    while (Serial.available() == 0);
-    int pilihan = Serial.parseInt();
-    Serial.println(pilihan);
-    while(Serial.available() > 0) Serial.read(); // Clear trailing newline
+    int pilihan;
+    scanf("%d", &pilihan);
+    while(getchar() != '\n'); // Bersihkan buffer
 
     // Validate the menu choice
     if (pilihan != 1 && pilihan != 2) {
-        Serial.println("Error: Pilihan tidak valid!");
+        printf("Error: Pilihan tidak valid!\n");
         return;
     }
 
     // ---- STEP 6: Ask for the Quantity ----
-    Serial.print("Masukkan jumlah unit barang: ");
-    while (Serial.available() == 0);
-    int kuantitas = Serial.parseInt();
-    Serial.println(kuantitas);
-    while(Serial.available() > 0) Serial.read(); // Clear trailing newline
+    printf("Masukkan jumlah unit barang: ");
+    int kuantitas;
+    scanf("%d", &kuantitas);
+    while(getchar() != '\n'); // Bersihkan buffer
 
     // Sanity check to make sure they didn't type a negative number here
     if (kuantitas < 0) {
-        Serial.println("Error: Jumlah unit tidak boleh negatif!");
+        printf("Error: Jumlah unit tidak boleh negatif!\n");
         return;
     }
 
@@ -150,18 +132,16 @@ void UpdateStock(node **head) { // all (nigo)
     if (pilihan == 1) {
         // Increase stock
         current->jumlah_stock += kuantitas;
-        Serial.print(">> Berhasil menambah stok. Stok baru: ");
-        Serial.println(current->jumlah_stock);
+        printf(">> Berhasil menambah stok. Stok baru: %d\n", current->jumlah_stock);
     } 
     else if (pilihan == 2) {
         // Decrease stock with warning check
         if (current->jumlah_stock < kuantitas) {
-            Serial.println("Warning: Stok tidak mencukupi! Proses pengurangan dibatalkan.");
+            printf("Warning: Stok tidak mencukupi! Proses pengurangan dibatalkan.\n");
         } else {
             current->jumlah_stock -= kuantitas;
-            Serial.print(">> Berhasil mengurangi stok. Stok baru: ");
-            Serial.println(current->jumlah_stock);
+            printf(">> Berhasil mengurangi stok. Stok baru: %d\n", current->jumlah_stock);
         }
     }
-    Serial.println();
+    printf("\n");
 }
