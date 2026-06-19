@@ -9,6 +9,7 @@ typedef struct node {
     short int status;
     char PIC[30];
     char PemilikBarang[30];
+    char lokasi_penyimpanan[60];
     struct node * next;
 }node;
 
