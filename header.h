@@ -13,7 +13,7 @@ typedef struct node {
     struct node * next;
 }node;
 
-void  tambah(node ** head, int num); // tambah di butnut, parameter sesuaikan (nigo)
+void  tambah(node ** head); // tambah di butnut, parameter sesuaikan (nigo)
 void Del (node **head, int num); // delete at index (moti)
 void Find (node **head, int num); // find by id (bang sam)
 void Display (node **head); // all (ari)

@@ -2,32 +2,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void tambah(node ** head, int num) {
-    // cek duplikat
+void tambah(node ** head) {
+    int num;
+    
+    // Input ID Barang
+    printf("Masukkan ID Barang Baru: ");
+    scanf("%d", &num);
+    while(getchar() != '\n'); // Bersihkan sisa enter
+
+    // Cek duplikat
     node *current = *head;
     while (current != NULL) {
         if (current->id_barang == num) {
-            printf("Error: ID duplikat!\n");
+            printf("Error: ID %d sudah ada (duplikat)!\n\n", num);
             return;
         }
         current = current->next;
     }
 
-    // alokasi memori
+    // Alokasi memori
     node *newNode = (node*)malloc(sizeof(node));
     if (newNode == NULL) {
-        printf("Error: Kapasitas memori hampir habis!\n");
+        printf("Error: Kapasitas memori hampir habis!\n\n");
         return;
     }
 
+    // Assign ID
     newNode->id_barang = num;
     
-    // Asumsi: Jika fungsi tambah() dipanggil tepat setelah input scanf di menu utama,
-    // mungkin perlu membersihkan buffer input (sisa '\n') terlebih dahulu sebelum pemanggilan fungsi ini.
-
+    // Input atribut lainnya
     printf("Masukkan Nama Barang: ");
     fgets(newNode->nama_barang, 100, stdin);
-    newNode->nama_barang[strcspn(newNode->nama_barang, "\n")] = '\0'; // Hapus enter bawaan fgets
+    newNode->nama_barang[strcspn(newNode->nama_barang, "\n")] = '\0'; 
 
     printf("Masukkan Kategori: ");
     fgets(newNode->kategori, 20, stdin);
@@ -35,15 +41,15 @@ void tambah(node ** head, int num) {
 
     printf("Masukkan Jumlah Stok: ");
     scanf("%d", &newNode->jumlah_stock);
-    while(getchar() != '\n'); // Bersihkan sisa karakter enter di buffer setelah scanf
+    while(getchar() != '\n'); 
 
     printf("Masukkan Lokasi Penyimpanan: ");
     fgets(newNode->lokasi_penyimpanan, 50, stdin);
     newNode->lokasi_penyimpanan[strcspn(newNode->lokasi_penyimpanan, "\n")] = '\0';
 
     printf("Masukkan Status: ");
-    scanf("%hd", &newNode->status); // %hd untuk short int
-    while(getchar() != '\n'); // Bersihkan sisa karakter enter di buffer
+    scanf("%hd", &newNode->status); 
+    while(getchar() != '\n'); 
 
     printf("Masukkan PIC: ");
     fgets(newNode->PIC, 30, stdin);
@@ -55,6 +61,7 @@ void tambah(node ** head, int num) {
 
     newNode->next = NULL;
 
+    // Masukkan ke dalam Linked List (Insert at Tail)
     if (*head == NULL) {
         *head = newNode;
     } else {
