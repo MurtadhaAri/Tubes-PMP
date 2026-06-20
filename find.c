@@ -10,8 +10,8 @@ void find(node **head) {
 
     node *temp = *head; 
 
-    while (temp != NULL) {
-        if (temp->id_barang == id) {
+    while(temp != NULL) {
+        if(temp->id_barang == id) {
             printf_P(PSTR("ID Barang: %hu\n"), temp->id_barang);
             printf_P(PSTR("Nama Barang: %s\n"), temp->nama_barang);
             
@@ -32,6 +32,5 @@ void find(node **head) {
         }
         temp = temp->next;
     }   
-
     printf_P(PSTR("Item dengan ID %hhu tidak ditemukan.\n"), id);
 }
