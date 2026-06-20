@@ -1,31 +1,31 @@
-#ifndef HEADER_H   /* Include guard */
+#ifndef HEADER_H  
 #define HEADER_H
 #include <stdint.h>
 #include <avr/pgmspace.h>
 typedef struct node {
-    uint16_t id_barang;            // 2 byte
-    uint16_t jumlah_stock;         // 2 byte
+    uint16_t id_barang;            
+    uint16_t jumlah_stock;         
     
-    char nama_barang[10];          // 10 byte
-    char lokasi_penyimpanan[12];   // 12 byte
-    char PIC[10];                  // 10 byte
-    char PemilikBarang[10];        // 10 byte
+    char nama_barang[10];          
+    char lokasi_penyimpanan[12];   
+    char PIC[10];                  
+    char PemilikBarang[10];        
     
-    // --- LETAKKAN BITFIELD BERSEBELAHAN ---
-    uint8_t kategori:2;            // 2 bit
-    uint8_t status:2;              // 2 bit
-    // Keduanya kini akan di-pack sempurna ke dalam 1 byte SRAM!
     
-    struct node *next;             // 2 byte
+    uint8_t kategori:2;            
+    uint8_t status:2;              
+    
+    
+    struct node *next;             
 } node;
 
-void tambah(node ** head); // tambah di butnut, parameter sesuaikan (nigo)
-void delete_node (node **head); // delete at index (moti)
-void find (node **head); // find by id (bang sam)
-void display (node **head); // all (ari)
-void update_stock (node **head); // all (nigo)
-void update_status (node **head); // all (Update Status)
-void display_ringkas (node **head); // all (bang sam)
+void tambah(node ** head); 
+void delete_node (node **head); 
+void find (node **head); 
+void display (node **head); 
+void update_stock (node **head); 
+void update_status (node **head); 
+void display_ringkas (node **head); 
 void MenuUtama(node **head);
 
 #endif
