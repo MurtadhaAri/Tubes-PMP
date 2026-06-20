@@ -15,7 +15,8 @@ void DeleteNode(node ** head, int id) {
             free(DelNode);
         }
         else{
-            node * temp; node * prev;
+            node * temp = *head;
+            node * prev = *head;
             while(temp != NULL){
                 if(temp->id_barang == id){
                     prev->next = temp->next;
