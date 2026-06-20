@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "header.h"
-
-  
 void display(node **head){
     if(*head == NULL){
         printf_P(PSTR("DATA EMPTY.\n"));
@@ -13,7 +11,7 @@ void display(node **head){
 
     printf_P(PSTR("---------------------------------------------------------------------------\n"));
     printf_P(PSTR("        DATA INVENTARIS LABORATORIUM    \n"));
-    while (current != NULL)
+    while(current != NULL)
     {
         printf_P(PSTR("---------------------------------------------------------------------------\n"));
         printf_P(PSTR("Barang Ke-%u\n"), count);
