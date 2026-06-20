@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <avr/pgmspace.h>
 
-void UpdateStatus(node **head) {
+void update_status(node **head) {
     uint16_t id; 
     printf_P(PSTR("Masukkan ID item yang mau diupdate rusak: "));
     scanf("%hu", &id); 
