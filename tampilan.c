@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "header.h"
 
-  
 void Display (node **head){
     if(*head == NULL){
         printf("DATA EMPTY.\n");

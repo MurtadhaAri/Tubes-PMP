@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void Find(node **head) {
+void find(node **head) {
     int id;
     printf("Masukkan ID item: ");
     scanf("%d", &id);

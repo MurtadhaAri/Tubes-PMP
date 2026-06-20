@@ -16,7 +16,7 @@ typedef struct node {
 
 void tambah(node ** head); // tambah di butnut, parameter sesuaikan (nigo)
 void delete_node (node **head, int num); // delete at index (moti)
-void Find (node **head, int num); // find by id (bang sam)
+void find (node **head, int num); // find by id (bang sam)
 void Display (node **head); // all (ari)
 void UpdateStock (node **head); // all (nigo)
 void updateStatus (node **head); // all (Update Status)
