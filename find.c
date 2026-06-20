@@ -18,8 +18,8 @@ void find(node **head) {
             printf_P(PSTR("Kategori: "));
             if(temp->kategori == 0) printf_P(PSTR("Komponen\n"));
             else if(temp->kategori == 1) printf_P(PSTR("Alat\n"));
-            else printf_P(PSTR("Lainnya (%hhu)\n"), temp->kategori);
-            
+            else printf_P(PSTR("Lainnya\n"));
+
             printf_P(PSTR("Jumlah Stock: %hu\n"), temp->jumlah_stock); 
             printf_P(PSTR("Status: %hhu\n"), temp->status);
             printf_P(PSTR("PIC: %s\n"), temp->PIC);
@@ -28,7 +28,7 @@ void find(node **head) {
             return; 
         }
         temp = temp->next;
-    }
+    }   
 
     printf_P(PSTR("Item dengan ID %hhu tidak ditemukan.\n"), id);
 }
