@@ -27,53 +27,53 @@ void MenuUtama(node **head) {
 
     printf_P(PSTR("\n--- Arduino Uno C Environment Ready ---\n"));
 
-    while (1) {
-        // Memanggil fungsi void untuk mencetak daftar menu
+    while(1) {
+        
         TampilkanMenuAplikasi();
         
         // Validasi input pilihan menu
-        if (scanf("%d", &pilihan) != 1) {
-            while(getchar() != '\n'); // Bersihkan buffer Serial jika input bukan angka
+        if(scanf("%d", &pilihan) != 1) {
+            while(getchar() != '\n'); 
             printf_P(PSTR("Input harus berupa angka!\n"));
             _delay_ms(1000);
             continue;
         }
-        while(getchar() != '\n'); // Bersihkan sisa buffer karakter newline (\n)
+        while(getchar() != '\n'); 
 
         printf_P(PSTR("\n"));
 
-        // Memproses pilihan menu menggunakan struktur if-else
-        if (pilihan == 1) {
+        
+        if(pilihan == 1) {
             tambah(head);
         } 
-        else if (pilihan == 2) {
+        else if(pilihan == 2) {
             Display(head);
         } 
-        else if (pilihan == 3) {
+        else if(pilihan == 3) {
             Disp_ringkas(head);
         } 
-        else if (pilihan == 4) {
+        else if(pilihan == 4) {
             UpdateStock(head);
         } 
-        else if (pilihan == 5) {
+        else if(pilihan == 5) {
             update_status_rusak(head);
         } 
-        else if (pilihan == 6) {
+        else if(pilihan == 6) {
             printf_P(PSTR("Masukkan ID Barang yang ingin dihapus: "));
-            if (scanf("%d", &id_target) == 1) {
+            if(scanf("%d", &id_target) == 1) {
                 while(getchar() != '\n');
                 DeleteNode(head, id_target);
-            } else {
+            } else{
                 while(getchar() != '\n');
                 printf_P(PSTR("ID tidak valid!\n"));
             }
         } 
-        else if (pilihan == 7) {
+        else if(pilihan == 7) {
             printf_P(PSTR("Keluar dari sistem. Terima kasih!\n"));
             _delay_ms(500);
             return; // Keluar dari perulangan dan fungsi MenuUtama
         } 
-        else {
+        else{
             printf_P(PSTR("Pilihan menu tidak tersedia!\n"));
         }
         
