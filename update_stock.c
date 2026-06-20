@@ -7,7 +7,7 @@
 
 void update_stock(node **head) { 
     if (*head == NULL) {
-        printf_P(PSTR("Tidak ada barang di dalam database.\n"));
+        printf_P(PSTR("Tidak ada barang di dalam database\n"));
         return; 
     }
 

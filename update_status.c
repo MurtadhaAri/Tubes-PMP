@@ -6,7 +6,7 @@
 
 void update_status(node **head) {
     if (*head == NULL) {
-        printf_P(PSTR("Database kosong! Tidak ada data untuk diupdate.\n\n"));
+        printf_P(PSTR("Tidak ada barang di dalam database\n\n"));
         return;
     }
 
