@@ -8,7 +8,7 @@ int main(void) {
     node *head = NULL;
     
     uart_init(9600);
-    printf_P(PSTR("\n--- Nigo Arduino Uno C Environment Ready ---\n"));
+    printf_P(PSTR("\n--- Arduino Uno C Environment Ready ---\n"));
     
     // AUTO-LOAD: Ekstraksi EEPROM otomatis setiap kali Arduino menyala
     load(&head);
