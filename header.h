@@ -2,17 +2,16 @@
 #define HEADER_H
 #include <stdint.h>
 #include <avr/pgmspace.h>
-
 typedef struct node {
-    uint16_t id_barang;          
-    char nama_barang[30];        
-    uint8_t kategori;            
-    uint16_t jumlah_stock;       
-    uint8_t status;              
-    char PIC[15];                
-    char PemilikBarang[15];      
-    char lokasi_penyimpanan[15]; 
-    struct node * next;
+    uint16_t id_barang;            // 2 byte
+    char nama_barang[10];          // Dipangkas dari 30 -> 20 byte
+    uint8_t kategori;              // 1 byte
+    uint16_t jumlah_stock;         // 2 byte
+    char lokasi_penyimpanan[12];   // Dipangkas dari 15 -> 12 byte
+    uint8_t status;                // 1 byte
+    char PIC[10];                  // Dipangkas dari 15 -> 10 byte
+    char PemilikBarang[10];        // Dipangkas dari 15 -> 10 byte
+    struct node *next;             // 2 byte
 } node;
 
 void tambah(node ** head); // tambah di butnut, parameter sesuaikan (nigo)
