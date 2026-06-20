@@ -26,5 +26,6 @@ void display (node **head); // all (ari)
 void update_stock (node **head); // all (nigo)
 void update_status (node **head); // all (Update Status)
 void display_ringkas (node **head); // all (bang sam)
+void MenuUtama(node **head);
 
 #endif
