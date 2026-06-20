@@ -44,7 +44,7 @@ void update_stock(node **head) {
     }
 
     printf_P(PSTR("Masukkan jumlah barang: "));
-    int16_t jumlah; 
+    uint16_t jumlah; 
     scanf("%hd", &jumlah);
     while(getchar() != '\n');
 
