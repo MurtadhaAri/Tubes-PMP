@@ -12,7 +12,6 @@ void find(node **head) {
 
     while (temp != NULL) {
         if (temp->id_barang == id) {
-            // PERBAIKAN: Format specifier untuk uint16_t adalah %hu
             printf_P(PSTR("ID Barang: %hu\n"), temp->id_barang);
             printf_P(PSTR("Nama Barang: %s\n"), temp->nama_barang);
             
@@ -20,8 +19,7 @@ void find(node **head) {
             if(temp->kategori == 0) printf_P(PSTR("Komponen\n"));
             else if(temp->kategori == 1) printf_P(PSTR("Alat\n"));
             else printf_P(PSTR("Lainnya (%hhu)\n"), temp->kategori);
-
-            // PERBAIKAN: Format specifier untuk uint16_t adalah %hu
+            
             printf_P(PSTR("Jumlah Stock: %hu\n"), temp->jumlah_stock); 
             printf_P(PSTR("Status: %hhu\n"), temp->status);
             printf_P(PSTR("PIC: %s\n"), temp->PIC);
