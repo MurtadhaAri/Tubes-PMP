@@ -11,6 +11,7 @@ void tambah(node ** head) {
     uint16_t num = 0;     
     int temp_input;       
     uint8_t id_valid = 0;
+    int verif_scan;
 
     while (!id_valid) {
         printf_P(PSTR("Masukkan ID Barang Baru: "));
@@ -68,10 +69,10 @@ void tambah(node ** head) {
 
     while (1) {
         printf_P(PSTR("Masukkan Kategori (0 = Komponen, 1 = Alat, 2 = Lainnya): "));
-        scanf("%d", &temp_input); 
+        verif_scan = scanf("%d", &temp_input); 
         while(getchar() != '\n');
 
-        if (temp_input == 0 || temp_input == 1 || temp_input == 2) {
+        if (verif_scan == 1 && (temp_input == 0 || temp_input == 1 || temp_input == 2)) {
             newNode->kategori = (uint8_t)temp_input; 
             break;
         } else {
@@ -81,9 +82,9 @@ void tambah(node ** head) {
 
     while(1){
         printf_P(PSTR("Masukkan Jumlah Stok: "));
-        scanf("%d", &temp_input);
+        verif_scan = scanf("%d", &temp_input);
         while(getchar() != '\n'); 
-        if(temp_input > 0 && temp_input <= 65535){
+        if(verif_scan == 1 && temp_input > 0 && temp_input <= 65535){
             newNode->jumlah_stock = (uint16_t)temp_input;
             break;
         } else {
@@ -97,10 +98,10 @@ void tambah(node ** head) {
 
     while (1) {
         printf_P(PSTR("Masukkan Status (1 = Tersedia, 0 = Habis): "));
-        scanf("%d", &temp_input); 
+        verif_scan = scanf("%d", &temp_input); 
         while(getchar() != '\n');
 
-        if (temp_input == 0 || temp_input == 1) { 
+        if (verif_scan == 1 && (temp_input == 0 || temp_input == 1)) { 
             newNode->status = (uint8_t)temp_input;
             break;
         } else {
