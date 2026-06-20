@@ -19,7 +19,8 @@ void MenuUtama(node **head) {
         printf_P(PSTR("4. Update Stok Barang\n"));
         printf_P(PSTR("5. Update Status Barang Rusak\n"));
         printf_P(PSTR("6. Hapus Barang dari Database\n"));
-        printf_P(PSTR("7. Keluar (Exit)\n"));
+        printf_P(PSTR("7. Cari Barang\n"));
+        printf_P(PSTR("8. Keluar (Exit)\n"));
         printf_P(PSTR("Masukkan pilihan Anda (1-7): "));
 
         if(scanf("%hhu", &pilihan) != 1) {
@@ -50,8 +51,11 @@ void MenuUtama(node **head) {
         } 
         else if(pilihan == 6) {
             delete_node(head);
-        } 
+        }
         else if(pilihan == 7) {
+            find(head);
+        } 
+        else if(pilihan == 8) {
             printf_P(PSTR("Keluar dari sistem. Terima kasih!\n"));
             save(head);
             _delay_ms(500);
