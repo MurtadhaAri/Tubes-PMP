@@ -104,19 +104,19 @@ void tambah(node ** head) {
     }
     
     while (1) {
-        printf_P(PSTR("Masukkan Status (1 = Tersedia, 0 = Habis): "));
+        printf_P(PSTR("Masukkan Status (0 = Habis, 1 = Tersedia, 2 = Rusak): "));
         verif_scan = scanf("%hhu", &temp8);
         while(getchar() != '\n');
 
-        if (verif_scan == 1 && (temp8 == 0 || temp8 == 1)) { 
+        if (verif_scan == 1 && (temp8 == 0 || temp8 == 1 || temp8 == 2)) { 
             newNode->status = temp8;
             break;
         } else {
-            printf_P(PSTR("Masukkan 0 atau 1\n\n"));
+            printf_P(PSTR("Masukkan 0, 1, atau 2\n\n"));
         }
     }
 
-    if (newNode->status == 1){
+    if (newNode->status == 1 || newNode->status == 2){
         while(1){
             printf_P(PSTR("Masukkan Jumlah Stok: "));
             verif_scan = scanf("%hu", &temp16);
