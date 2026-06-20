@@ -33,8 +33,8 @@ void update_status(node **head) {
                 return;
             }
 
-            int pilihan_status = 0;
-            int verif_scan = scanf("%d", &pilihan_status);
+            uint8_t pilihan_status = 0;
+            uint8_t verif_scan = scanf("%d", &pilihan_status);
             while (getchar() != '\n');
 
             if (verif_scan == 1 && pilihan_status == 1) {
