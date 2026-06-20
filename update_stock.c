@@ -12,8 +12,8 @@ void update_stock(node **head) {
     }
 
     printf_P(PSTR("Masukkan ID Barang yang ingin diupdate: "));
-    uint16_t targetID; 
-    scanf("%hu", &targetID);
+    uint8_t targetID; 
+    scanf("%hhu", &targetID);
     while(getchar() != '\n'); 
 
     node *current = *head;
@@ -44,8 +44,8 @@ void update_stock(node **head) {
     }
 
     printf_P(PSTR("Masukkan jumlah barang: "));
-    uint16_t jumlah; 
-    scanf("%hd", &jumlah);
+    uint16_t kuantitas; 
+    scanf("%hd", &kuantitas);
     while(getchar() != '\n');
 
     if (kuantitas < 0) {
@@ -54,17 +54,17 @@ void update_stock(node **head) {
     }
 
     if (pilihan == 1) {
-        current->jumlah_stock += jumlah;
+        current->jumlah_stock += kuantitas;
         printf_P(PSTR("Berhasil menambah stok. Stok baru: %hu\n"), current->jumlah_stock);
         if (current->status == 0){
             current->status = 1; 
         }
     } 
     else if (pilihan == 2) {
-        if (current->jumlah_stock < (uint16_t)jumlah) {
+        if (current->jumlah_stock < (uint16_t)kuantitas) {
             printf_P(PSTR("Stok tidak cukup\n"));
         } else {
-            current->jumlah_stock -= jumlah;
+            current->jumlah_stock -= kuantitas;
             printf_P(PSTR("Berhasil mengurangi stok. Stok baru: %hu\n"), current->jumlah_stock);
             if (current->jumlah_stock == 0){
                 current->status = 0; 

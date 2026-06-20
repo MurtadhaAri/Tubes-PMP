@@ -3,25 +3,25 @@
 #include "header.h"
 
 void delete_node(node **head) {
-    unsigned int id; 
+    uint8_t id; 
     node *DelNode;
     node *temp;
     node *prev;
     if (*head == NULL) {
-        printf("\nDatabase kosong! Tidak ada data yang bisa dihapus.\n");
+        printf_P(PSTR("\nDatabase kosong! Tidak ada data yang bisa dihapus.\n"));
         return;
     }
 
  
-    printf("Masukkan ID Barang yang ingin dihapus: ");
-    scanf("%u", &id); 
+    printf_P(PSTR("Masukkan ID Barang yang ingin dihapus: "));
+    scanf("%hhu", &id); 
     while(getchar() != '\n'); 
 
     if ((*head)->id_barang == id) {
         DelNode = *head;
         (*head) = (*head)->next;
         free(DelNode);
-        printf("Barang dengan ID %u berhasil dihapus!\n", id);
+        printf_P(PSTR("Barang dengan ID %hhu berhasil dihapus!\n"), id);
         return;
     }
    
@@ -32,12 +32,12 @@ void delete_node(node **head) {
         if (temp->id_barang == id) {
             prev->next = temp->next;
             free(temp);
-            printf("Barang dengan ID %u berhasil dihapus!\n", id);
+            printf_P(PSTR("Barang dengan ID %hhu berhasil dihapus!\n"), id);
             return;    
         }
         prev = temp;
         temp = temp->next;
     }
     
-    printf("Penghapusan gagal: Barang dengan ID %u tidak ditemukan!\n", id);
+    printf_P(PSTR("Penghapusan gagal: Barang dengan ID %hhu tidak ditemukan!\n"), id);
 }
