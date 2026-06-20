@@ -4,7 +4,7 @@
 
 void display_ringkas(node **head){
     if (*head==NULL){
-        printf_P(PSTR("DATA EMPTY.\n"));
+        printf_P(PSTR("Tidak ada barang di dalam database\n"));
         return;
     }
     node *current = *head;
