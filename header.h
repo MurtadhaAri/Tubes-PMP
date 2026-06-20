@@ -1,4 +1,4 @@
-#ifndef HEADER_H   /* Include guard */
+#ifndef HEADER_H  
 #define HEADER_H
 #include <stdint.h>
 
@@ -14,12 +14,13 @@ typedef struct node {
     struct node * next;
 } node;
 
-void tambah(node ** head); // tambah di butnut, parameter sesuaikan (nigo)
-void delete_node (node **head, int num); // delete at index (moti)
-void find (node **head, int num); // find by id (bang sam)
-void display (node **head); // all (ari)
-void update_stock (node **head); // all (nigo)
-void update_status (node **head); // all (Update Status)
-void display_ringkas (node **head); // all (bang sam)
+void tambah(node ** head); 
+void delete_node (node **head); 
+void find(node **head); 
+void display(node **head); 
+void update_stock (node **head); 
+void update_status (node **head); 
+void display_ringkas(node **head); 
+void menu_utama(node **head);
 
 #endif
