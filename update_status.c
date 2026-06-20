@@ -1,0 +1,25 @@
+#include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <avr/pgmspace.h>
+
+void UpdateStatus(node **head) {
+    uint16_t id; 
+    printf_P(PSTR("Masukkan ID item yang mau diupdate rusak: "));
+    scanf("%hu", &id); 
+
+    node *temp = *head;
+
+    while (temp != NULL) {
+        if (temp->id_barang == id) {
+            temp->status = 3; 
+            return; 
+        }
+        temp = temp->next;
+    }
+
+    if (temp == NULL) {
+        printf_P(PSTR("Item dengan ID %hu tidak ditemukan.\n"), id);
+    }
+}
