@@ -6,9 +6,9 @@
 #include <ctype.h>        
 #include <avr/pgmspace.h> 
 
-#define EEPROM_SIZE 1024
 
 void tambah(node ** head) {
+    uint16_t eeprom = 1024
     char id_buffer[12];   
     uint16_t num = 0;     
 
@@ -31,7 +31,7 @@ void tambah(node ** head) {
         cek_node = cek_node->next;
     }
 
-    if (((current_count + 1) * sizeof(node)) > EEPROM_SIZE) {
+    if (((current_count + 1) * sizeof(node)) > eeprom) {
         printf_P(PSTR("Tidak dapat menyimpan data lebih dari ini\n\n"));
         return;
     }
