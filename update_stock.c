@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <avr/pgmspace.h>
 
-void UpdateStock(node **head) { 
+void update_stock(node **head) { 
     if (*head == NULL) {
         printf_P(PSTR("Tidak ada barang di dalam database.\n"));
         return; 
