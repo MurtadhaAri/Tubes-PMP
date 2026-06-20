@@ -27,8 +27,7 @@ void MenuUtama(node **head) {
     while(1) {
         
         TampilkanMenuAplikasi();
-        
-        // Validasi input pilihan menu
+
         if(scanf("%d", &pilihan) != 1) {
             while(getchar() != '\n'); 
             printf_P(PSTR("Input harus berupa angka!\n"));
@@ -68,12 +67,12 @@ void MenuUtama(node **head) {
         else if(pilihan == 7) {
             printf_P(PSTR("Keluar dari sistem. Terima kasih!\n"));
             _delay_ms(500);
-            return; // Keluar dari perulangan dan fungsi MenuUtama
+            return;
         } 
         else{
             printf_P(PSTR("Pilihan menu tidak tersedia!\n"));
         }
         
-        _delay_ms(500); // Delay singkat demi stabilitas Serial Monitor Arduino
+        _delay_ms(500);
     }
 }
