@@ -21,7 +21,7 @@ void MenuUtama(node **head) {
         printf_P(PSTR("6. Hapus Barang dari Database\n"));
         printf_P(PSTR("7. Cari Barang\n"));
         printf_P(PSTR("8. Keluar (Exit)\n"));
-        printf_P(PSTR("Masukkan pilihan Anda (1-7): "));
+        printf_P(PSTR("Masukkan pilihan Anda (1-8): "));
 
         if(scanf("%hhu", &pilihan) != 1) {
             while(getchar() != '\n'); 

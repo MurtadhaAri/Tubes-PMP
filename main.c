@@ -8,7 +8,6 @@ int main(void) {
     node *head = NULL;
     
     uart_init(9600);
-    printf_P(PSTR("\n--- Arduino Uno C Environment Ready ---\n"));
     MenuUtama( &head);
     return 0;
 }
