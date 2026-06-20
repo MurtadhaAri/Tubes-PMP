@@ -8,7 +8,7 @@
 
 
 void tambah(node ** head) {
-    uint16_t eeprom = 1024
+    uint16_t eeprom = 1024;
     char id_buffer[12];   
     uint16_t num = 0;     
 
