@@ -6,9 +6,9 @@
 #include <ctype.h>        
 #include <avr/pgmspace.h> 
 
-#define EEPROM_SIZE 1024
 
 void tambah(node ** head) {
+    uint16_t eeprom = 1024
     char id_buffer[12];   
     uint16_t num = 0;     
 
@@ -16,7 +16,7 @@ void tambah(node ** head) {
     uint16_t temp16;       
     
     uint8_t id_valid = 0;
-    uint8_t scan_res;
+    uint8_t verif_scan;
     int i;
     uint32_t cek_nilai;
     node *current;
@@ -31,7 +31,7 @@ void tambah(node ** head) {
         cek_node = cek_node->next;
     }
 
-    if (((current_count + 1) * sizeof(node)) > EEPROM_SIZE) {
+    if (((current_count + 1) * sizeof(node)) > eeprom) {
         printf_P(PSTR("Tidak dapat menyimpan data lebih dari ini\n\n"));
         return;
     }
@@ -92,45 +92,52 @@ void tambah(node ** head) {
 
     while (1) {
         printf_P(PSTR("Masukkan Kategori (0 = Komponen, 1 = Alat, 2 = Lainnya): "));
-        scan_res = scanf("%hhu", &temp8); 
+        verif_scan = scanf("%hhu", &temp8); 
         while(getchar() != '\n');
 
-        if (scan_res == 1 && (temp8 == 0 || temp8 == 1 || temp8 == 2)) {
+        if (verif_scan == 1 && (temp8 == 0 || temp8 == 1 || temp8 == 2)) {
             newNode->kategori = temp8; 
             break;
         } else {
             printf_P(PSTR("Masukkan 0, 1, atau 2\n\n"));
         }
-    } 
+    }
+    
+    while (1) {
+        printf_P(PSTR("Masukkan Status (0 = Habis, 1 = Tersedia, 2 = Rusak): "));
+        verif_scan = scanf("%hhu", &temp8);
+        while(getchar() != '\n');
 
-    while(1){
-        printf_P(PSTR("Masukkan Jumlah Stok: "));
-        scan_res = scanf("%hu", &temp16);
-        while(getchar() != '\n'); 
-        if(scan_res == 1 && temp16 > 0 && temp16 <= 65535){
-            newNode->jumlah_stock = temp16;
+        if (verif_scan == 1 && (temp8 == 0 || temp8 == 1 || temp8 == 2)) { 
+            newNode->status = temp8;
             break;
         } else {
-            printf_P(PSTR("Masukkan jumlah valid! (1 - 65535)\n\n"));
+            printf_P(PSTR("Masukkan 0, 1, atau 2\n\n"));
         }
     }
+
+    if (newNode->status == 1 || newNode->status == 2){
+        while(1){
+            printf_P(PSTR("Masukkan Jumlah Stok: "));
+            verif_scan = scanf("%hu", &temp16);
+            while(getchar() != '\n'); 
+            if(verif_scan == 1 && temp16 > 0 && temp16 <= 65535){
+                newNode->jumlah_stock = temp16;
+                break;
+            } else {
+                printf_P(PSTR("Masukkan jumlah valid! (1 - 65535)\n\n"));
+            }
+        }
+    } else {
+        newNode->jumlah_stock = 0;
+    }
+    
     
     printf_P(PSTR("Masukkan Lokasi Penyimpanan: "));
     fgets(newNode->lokasi_penyimpanan, sizeof(newNode->lokasi_penyimpanan), stdin);
     newNode->lokasi_penyimpanan[strcspn(newNode->lokasi_penyimpanan, "\r\n")] = '\0';
 
-    while (1) {
-        printf_P(PSTR("Masukkan Status (1 = Tersedia, 0 = Habis): "));
-        scan_res = scanf("%hhu", &temp8);
-        while(getchar() != '\n');
-
-        if (scan_res == 1 && (temp8 == 0 || temp8 == 1)) { 
-            newNode->status = temp8;
-            break;
-        } else {
-            printf_P(PSTR("Masukkan 0 atau 1\n\n"));
-        }
-    } 
+     
 
     printf_P(PSTR("Masukkan PIC: "));
     fgets(newNode->PIC, sizeof(newNode->PIC), stdin);

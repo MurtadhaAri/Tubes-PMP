@@ -13,7 +13,7 @@ void update_status(node **head) {
 
     while (temp != NULL) {
         if (temp->id_barang == id) {
-            temp->status = 3; 
+            temp->status = 2; 
             return; 
         }
         temp = temp->next;
