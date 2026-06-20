@@ -29,7 +29,7 @@ void update_status(node **head) {
                 printf_P(PSTR("Rusak\n"));
                 printf_P(PSTR("Apakah ingin mengubah status barang menjadi Tersedia? (Ketik 1 jika ya): "));
             } else {
-                printf_P(PSTR("Tidak Diketahui\n\n"));
+                printf_P(PSTR("Barang Habis\n\n"));
                 return;
             }
 
@@ -45,7 +45,6 @@ void update_status(node **head) {
                 }
                 printf_P(PSTR("Status item ID %hu berhasil diperbarui!\n\n"), id);
             } else {
-
                 printf_P(PSTR("Status tidak berubah.\n\n"));
             }
             
