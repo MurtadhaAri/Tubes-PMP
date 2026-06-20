@@ -34,10 +34,10 @@ void update_status(node **head) {
             }
 
             int pilihan_status = 0;
-            int scan_res = scanf("%d", &pilihan_status);
+            int verif_scan = scanf("%d", &pilihan_status);
             while (getchar() != '\n');
 
-            if (scan_res == 1 && pilihan_status == 1) {
+            if (verif_scan == 1 && pilihan_status == 1) {
                 if (temp->status == 1) {
                     temp->status = (uint8_t)2;
                 } else {
