@@ -5,17 +5,12 @@
 typedef struct node {
     uint16_t id_barang;            
     uint16_t jumlah_stock;         
-    
     char nama_barang[10];          
     char lokasi_penyimpanan[12];   
     char PIC[10];                  
     char PemilikBarang[10];        
-    
-    
     uint8_t kategori:2;            
     uint8_t status:2;              
-    
-    
     struct node *next;             
 } node;
 
