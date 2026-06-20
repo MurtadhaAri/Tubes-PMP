@@ -30,8 +30,7 @@ void display(node **head){
         printf_P(PSTR("Status              : "));
         if(current->status==0)printf_P(PSTR("Habis\n"));
         else if(current->status==1)printf_P(PSTR("Tersedia\n"));
-        else if(current->status==2)printf_P(PSTR("Dipinjam\n"));
-        else if(current->status==3)printf_P(PSTR("Rusak\n"));
+        else if(current->status==2)printf_P(PSTR("Rusak\n"));
         else printf_P(PSTR("Status Tidak Diketahui (%u)\n"), current->status);
 
         printf_P(PSTR("PIC                 : %s\n"), current->PIC);
