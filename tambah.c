@@ -11,13 +11,13 @@ void tambah(node ** head) {
     uint16_t num = 0;     
     int temp_input;       
     uint8_t id_valid = 0;
-    int verif_scan;
+    int scan_res;
 
     while (!id_valid) {
         printf_P(PSTR("Masukkan ID Barang Baru: "));
         if (fgets(id_buffer, sizeof(id_buffer), stdin) == NULL) continue;
 
-        id_buffer[strcspn(id_buffer, "\n")] = '\0';
+        id_buffer[strcspn(id_buffer, "\r\n")] = '\0';
 
         if (strlen(id_buffer) == 0) {
             printf_P(PSTR("ID tidak boleh kosong\n\n"));
@@ -65,14 +65,14 @@ void tambah(node ** head) {
     
     printf_P(PSTR("Masukkan Nama Barang: "));
     fgets(newNode->nama_barang, sizeof(newNode->nama_barang), stdin);
-    newNode->nama_barang[strcspn(newNode->nama_barang, "\n")] = '\0'; 
+    newNode->nama_barang[strcspn(newNode->nama_barang, "\r\n")] = '\0'; 
 
     while (1) {
         printf_P(PSTR("Masukkan Kategori (0 = Komponen, 1 = Alat, 2 = Lainnya): "));
-        verif_scan = scanf("%d", &temp_input); 
+        scan_res = scanf("%d", &temp_input); 
         while(getchar() != '\n');
 
-        if (verif_scan == 1 && (temp_input == 0 || temp_input == 1 || temp_input == 2)) {
+        if (scan_res == 1 && (temp_input == 0 || temp_input == 1 || temp_input == 2)) {
             newNode->kategori = (uint8_t)temp_input; 
             break;
         } else {
@@ -82,9 +82,9 @@ void tambah(node ** head) {
 
     while(1){
         printf_P(PSTR("Masukkan Jumlah Stok: "));
-        verif_scan = scanf("%d", &temp_input);
+        scan_res = scanf("%d", &temp_input);
         while(getchar() != '\n'); 
-        if(verif_scan == 1 && temp_input > 0 && temp_input <= 65535){
+        if(scan_res == 1 && temp_input > 0 && temp_input <= 65535){
             newNode->jumlah_stock = (uint16_t)temp_input;
             break;
         } else {
@@ -94,14 +94,14 @@ void tambah(node ** head) {
     
     printf_P(PSTR("Masukkan Lokasi Penyimpanan: "));
     fgets(newNode->lokasi_penyimpanan, sizeof(newNode->lokasi_penyimpanan), stdin);
-    newNode->lokasi_penyimpanan[strcspn(newNode->lokasi_penyimpanan, "\n")] = '\0';
+    newNode->lokasi_penyimpanan[strcspn(newNode->lokasi_penyimpanan, "\r\n")] = '\0';
 
     while (1) {
         printf_P(PSTR("Masukkan Status (1 = Tersedia, 0 = Habis): "));
-        verif_scan = scanf("%d", &temp_input); 
+        scan_res = scanf("%d", &temp_input); 
         while(getchar() != '\n');
 
-        if (verif_scan == 1 && (temp_input == 0 || temp_input == 1)) { 
+        if (scan_res == 1 && (temp_input == 0 || temp_input == 1)) { 
             newNode->status = (uint8_t)temp_input;
             break;
         } else {
@@ -111,11 +111,11 @@ void tambah(node ** head) {
 
     printf_P(PSTR("Masukkan PIC: "));
     fgets(newNode->PIC, sizeof(newNode->PIC), stdin);
-    newNode->PIC[strcspn(newNode->PIC, "\n")] = '\0';
+    newNode->PIC[strcspn(newNode->PIC, "\r\n")] = '\0';
 
     printf_P(PSTR("Masukkan Pemilik Barang: "));
     fgets(newNode->PemilikBarang, sizeof(newNode->PemilikBarang), stdin);
-    newNode->PemilikBarang[strcspn(newNode->PemilikBarang, "\n")] = '\0';
+    newNode->PemilikBarang[strcspn(newNode->PemilikBarang, "\r\n")] = '\0';
 
     newNode->next = NULL;
 
