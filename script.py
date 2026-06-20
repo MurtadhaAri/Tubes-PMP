@@ -1,7 +1,6 @@
 import serial
 import time
 
-# Konfigurasi Serial (Sesuaikan dengan port di VS Code Anda)
 PORT = 'COM6' 
 BAUD_RATE = 9600
 
@@ -31,7 +30,6 @@ while True:
 
             print(f"[Arduino] {line}")
             
-            # --- PENANGANAN MENU UTAMA YANG KETAT ---
             if "Masukkan nomor menu" in line:
                 if fase_stress_testing:
                     print(">>> [BOT] Mengetik: 1 (Tambah Barang)")
@@ -40,7 +38,6 @@ while True:
                     print(">>> [BOT] Mengetik: 3 (Simpan ke EEPROM)")
                     ser.write(b"3\n") 
             
-            # --- FASE 1: STRESS TEST (INPUT DATA) ---
             elif fase_stress_testing:
                 if "Masukkan ID Barang" in line:
                     ser.write(f"{count}\n".encode())
@@ -74,15 +71,11 @@ while True:
                     print(f"---> [SKIP] ID {count} sudah ada. Melompat...\n")
                     count += 1 
                     
-                # --- DETEKSI PENUH & PINDAH FASE ---
                 elif "Kapasitas memori hampir habis" in line or "Tidak dapat menyimpan data lebih dari ini" in line:
                     print("\n[!] BATAS TERCAPAI! MENGUBAH MODE BOT KE AUTO-SAVE...\n")
                     fase_stress_testing = False
-                    
-                    # PENTING: Bersihkan kabel USB dari sisa tembakan angka sebelumnya (Mencegah Menu 4/5 terpencet)
                     ser.reset_output_buffer() 
 
-            # --- FASE 2: SELESAI ---
             if "tersimpan permanen" in line and not fase_stress_testing:
                 print("\n==================================================")
                 print("             STRESS TEST SELESAI                  ")
