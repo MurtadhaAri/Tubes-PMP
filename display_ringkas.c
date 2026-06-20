@@ -4,50 +4,50 @@
 
 void display_ringkas(node **head){
     if (*head==NULL){
-        printf("DATA EMPTY.\n");
+        printf_P(PSTR("DATA EMPTY.\n"));
         return;
     }
     node *current = *head;
 
-    uint16_t input_kategori;
-    printf("\nPilih Kategori:\n");
-    printf("0 = Komponen\n");
-    printf("1 = Alat\n");
-    printf("2 = Lainnya\n");
-    printf("Masukkan Kategori: ");
-    scanf("%u", &input_kategori);
+    uint8_t input_kategori;
+    printf_P(PSTR("\nPilih Kategori:\n"));
+    printf_P(PSTR("0 = Komponen\n"));
+    printf_P(PSTR("1 = Alat\n"));
+    printf_P(PSTR("2 = Lainnya\n"));
+    printf_P(PSTR("Masukkan Kategori: "));
+    scanf("%hhu", &input_kategori);
     while(getchar() != '\n');
 
-    if (input_kategori < 0 || input_kategori > 2){
-        printf("KATEGORI TIDAK VALID!\n");
+    if (input_kategori > 2){
+        printf_P(PSTR("KATEGORI TIDAK VALID!\n"));
         return;
     }
 
-    printf("---------------------------------------------------------------------------\n");
-    printf("   DATA INVENTARIS KATEGORI LABORATORIUM ");
-    if(input_kategori == 0) printf("KOMPONEN\n");
-    else if(input_kategori == 1) printf("ALAT\n");
-    else printf("LAINNYA\n");
-    printf("---------------------------------------------------------------------------\n");
+    printf_P(PSTR("---------------------------------------------------------------------------\n"));
+    printf_P(PSTR("   DATA INVENTARIS KATEGORI LABORATORIUM "));
+    if(input_kategori == 0) printf_P(PSTR("KOMPONEN\n"));
+    else if(input_kategori == 1) printf_P(PSTR("ALAT\n"));
+    else printf_P(PSTR("LAINNYA\n"));
+    printf_P(PSTR("---------------------------------------------------------------------------\n"));
 
-    uint16_t count = 0;
+    uint8_t count = 0;
     while (current != NULL){
         if(current->kategori == input_kategori){
             count++;
-            printf("[%u]. ID: %u | Nama: %s | Stok: %u | Lokasi Penyimpanan: %s\n", count, current->id_barang, current->nama_barang, current->jumlah_stock, current->lokasi_penyimpanan);
-            printf(" Status: ");
-            if(current->status == 0) printf("Habis");
-            else if(current->status == 1) printf("Tersedia");
-            else if(current->status == 2) printf("Dipinjam");
-            else if(current->status ==3)printf("Rusak");
-            else printf("Status Tidak Diketahui");
-            printf(" | PIC: %s | Pemilik: %s\n", current->PIC, current->PemilikBarang);
-            printf("---------------------------------------------------------------------------\n");
+            printf_P(PSTR("[%u]. ID: %u | Nama: %s | Stok: %u | Lokasi Penyimpanan: %s\n"), count, current->id_barang, current->nama_barang, current->jumlah_stock, current->lokasi_penyimpanan);
+            printf_P(PSTR(" Status: "));
+            if(current->status == 0) printf_P(PSTR("Habis"));
+            else if(current->status == 1) printf_P(PSTR("Tersedia"));
+            else if(current->status == 2) printf_P(PSTR("Dipinjam"));
+            else if(current->status ==3) printf_P(PSTR("Rusak"));
+            else printf_P(PSTR("Status Tidak Diketahui"));
+            printf_P(PSTR(" | PIC: %s | Pemilik: %s\n"), current->PIC, current->PemilikBarang);
+            printf_P(PSTR("---------------------------------------------------------------------------\n"));
         }
         current = current->next;
     }
 
-    if(count==0) printf("Tidak ada barang di dalam kategori ini.\n");
-    else printf("Total Barang dalam kategori ini: %u\n", count);
-    printf("---------------------------------------------------------------------------\n");
+    if(count==0) printf_P(PSTR("Tidak ada barang di dalam kategori ini.\n"));
+    else printf_P(PSTR("Total Barang dalam kategori ini: %u\n"), count);
+    printf_P(PSTR("---------------------------------------------------------------------------\n"));
 }
