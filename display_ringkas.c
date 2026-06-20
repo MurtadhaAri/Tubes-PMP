@@ -3,7 +3,7 @@
 #include "header.h"
 
 void display_ringkas(node **head){
-    if (*head==NULL){
+    if(*head==NULL){
         printf_P(PSTR("Tidak ada barang di dalam database\n"));
         return;
     }
@@ -18,7 +18,7 @@ void display_ringkas(node **head){
     scanf("%hhu", &input_kategori);
     while(getchar() != '\n');
 
-    if (input_kategori > 2){
+    if(input_kategori > 2){
         printf_P(PSTR("KATEGORI TIDAK VALID!\n"));
         return;
     }
@@ -31,7 +31,7 @@ void display_ringkas(node **head){
     printf_P(PSTR("---------------------------------------------------------------------------\n"));
 
     uint8_t count = 0;
-    while (current != NULL){
+    while(current != NULL){
         if(current->kategori == input_kategori){
             count++;
             printf_P(PSTR("[%u]. ID: %u | Nama: %s | Stok: %u | Lokasi Penyimpanan: %s\n"), count, current->id_barang, current->nama_barang, current->jumlah_stock, current->lokasi_penyimpanan);
