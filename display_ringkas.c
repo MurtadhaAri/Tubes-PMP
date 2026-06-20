@@ -38,8 +38,7 @@ void display_ringkas(node **head){
             printf_P(PSTR(" Status: "));
             if(current->status == 0) printf_P(PSTR("Habis"));
             else if(current->status == 1) printf_P(PSTR("Tersedia"));
-            else if(current->status == 2) printf_P(PSTR("Dipinjam"));
-            else if(current->status ==3) printf_P(PSTR("Rusak"));
+            else if(current->status == 2) printf_P(PSTR("Rusak"));
             else printf_P(PSTR("Status Tidak Diketahui"));
             printf_P(PSTR(" | PIC: %s | Pemilik: %s\n"), current->PIC, current->PemilikBarang);
             printf_P(PSTR("---------------------------------------------------------------------------\n"));
