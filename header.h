@@ -4,13 +4,18 @@
 #include <avr/pgmspace.h>
 typedef struct node {
     uint16_t id_barang;            // 2 byte
-    char nama_barang[10];          // Dipangkas dari 30 -> 20 byte
-    uint8_t kategori;              // 1 byte
     uint16_t jumlah_stock;         // 2 byte
-    char lokasi_penyimpanan[12];   // Dipangkas dari 15 -> 12 byte
-    uint8_t status;                // 1 byte
-    char PIC[10];                  // Dipangkas dari 15 -> 10 byte
-    char PemilikBarang[10];        // Dipangkas dari 15 -> 10 byte
+    
+    char nama_barang[10];          // 10 byte
+    char lokasi_penyimpanan[12];   // 12 byte
+    char PIC[10];                  // 10 byte
+    char PemilikBarang[10];        // 10 byte
+    
+    // --- LETAKKAN BITFIELD BERSEBELAHAN ---
+    uint8_t kategori:2;            // 2 bit
+    uint8_t status:2;              // 2 bit
+    // Keduanya kini akan di-pack sempurna ke dalam 1 byte SRAM!
+    
     struct node *next;             // 2 byte
 } node;
 
