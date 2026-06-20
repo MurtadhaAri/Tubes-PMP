@@ -28,7 +28,6 @@ void load(node **head) {
             printf_P(PSTR("Memori SRAM penuh saat memuat data!\n"));
             return;
         }
-
         eeprom_read_block((void*)newNode, (const void*)alamat_eeprom, sizeof(node));
         
         newNode->next = NULL;
