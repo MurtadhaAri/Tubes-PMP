@@ -20,6 +20,6 @@ void find (node **head, int num); // find by id (bang sam)
 void display (node **head); // all (ari)
 void update_stock (node **head); // all (nigo)
 void update_status (node **head); // all (Update Status)
-void Disp_ringkas (node **head); // all (bang sam)
+void display_ringkas (node **head); // all (bang sam)
 
 #endif

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "header.h"
 
-void Disp_ringkas (node **head){
+void display_ringkas (node **head){
     if (*head==NULL){
         printf("DATA EMPTY.\n");
         return;
