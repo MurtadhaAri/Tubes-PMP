@@ -25,7 +25,7 @@ void update_stock(node **head) {
     }
 
     if (current == NULL) {
-        printf_P(PSTR("Error: ID tidak ditemukan!\n"));
+        printf_P(PSTR("ID tidak ditemukan!\n"));
         return;
     }
  
@@ -49,7 +49,7 @@ void update_stock(node **head) {
     while(getchar() != '\n');
 
     if (kuantitas < 0) {
-        printf_P(PSTR("Jumlah unit tidak boleh negatif!\n"));
+        printf_P(PSTR("Jumlah unit tidak boleh negatif\n"));
         return;
     }
 
@@ -62,7 +62,7 @@ void update_stock(node **head) {
     } 
     else if (pilihan == 2) {
         if (current->jumlah_stock < (uint16_t)kuantitas) {
-            printf_P(PSTR("Stok tidak cukup!\n"));
+            printf_P(PSTR("Stok tidak cukup\n"));
         } else {
             current->jumlah_stock -= kuantitas;
             printf_P(PSTR("Berhasil mengurangi stok. Stok baru: %hu\n"), current->jumlah_stock);
