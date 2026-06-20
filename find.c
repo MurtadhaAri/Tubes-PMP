@@ -3,33 +3,34 @@
 #include <stdlib.h>
 
 void find(node **head) {
-    uint16_t id;
-    printf("Masukkan ID item: ");
-    scanf("%u", &id); 
+    uint8_t id;
+    printf_P(PSTR("Masukkan ID item: "));
+    scanf("%hhu", &id); 
     while(getchar() != '\n');
 
     node *temp = *head; 
 
     while (temp != NULL) {
         if (temp->id_barang == id) {
-            printf("ID Barang: %u\n", temp->id_barang);
-            printf("Nama Barang: %s\n", temp->nama_barang);
+            // PERBAIKAN: Format specifier untuk uint16_t adalah %hu
+            printf_P(PSTR("ID Barang: %hu\n"), temp->id_barang);
+            printf_P(PSTR("Nama Barang: %s\n"), temp->nama_barang);
             
-            
-            printf("Kategori: ");
-            if(temp->kategori == 0) printf("Komponen\n");
-            else if(temp->kategori == 1) printf("Alat\n");
-            else printf("Lainnya (%u)\n", temp->kategori);
+            printf_P(PSTR("Kategori: "));
+            if(temp->kategori == 0) printf_P(PSTR("Komponen\n"));
+            else if(temp->kategori == 1) printf_P(PSTR("Alat\n"));
+            else printf_P(PSTR("Lainnya (%hhu)\n"), temp->kategori);
 
-            printf("Jumlah Stock: %u\n", temp->jumlah_stock); 
-            printf("Status: %u\n", temp->status);
-            printf("PIC: %s\n", temp->PIC);
-            printf("Pemilik Barang: %s\n", temp->PemilikBarang);
-            printf("Lokasi Penyimpanan: %s\n", temp->lokasi_penyimpanan);
+            // PERBAIKAN: Format specifier untuk uint16_t adalah %hu
+            printf_P(PSTR("Jumlah Stock: %hu\n"), temp->jumlah_stock); 
+            printf_P(PSTR("Status: %hhu\n"), temp->status);
+            printf_P(PSTR("PIC: %s\n"), temp->PIC);
+            printf_P(PSTR("Pemilik Barang: %s\n"), temp->PemilikBarang);
+            printf_P(PSTR("Lokasi Penyimpanan: %s\n"), temp->lokasi_penyimpanan);
             return; 
         }
         temp = temp->next;
     }
 
-    printf("Item dengan ID %u tidak ditemukan.\n", id);
+    printf_P(PSTR("Item dengan ID %hhu tidak ditemukan.\n"), id);
 }

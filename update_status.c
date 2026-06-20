@@ -5,9 +5,9 @@
 #include <avr/pgmspace.h>
 
 void update_status(node **head) {
-    uint16_t id; 
+    uint8_t id; 
     printf_P(PSTR("Masukkan ID item yang mau diupdate rusak: "));
-    scanf("%hu", &id); 
+    scanf("%hhu", &id); 
 
     node *temp = *head;
 
@@ -20,6 +20,6 @@ void update_status(node **head) {
     }
 
     if (temp == NULL) {
-        printf_P(PSTR("Item dengan ID %hu tidak ditemukan.\n"), id);
+        printf_P(PSTR("Item dengan ID %hhu tidak ditemukan.\n"), id);
     }
 }

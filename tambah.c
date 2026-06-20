@@ -9,9 +9,17 @@
 void tambah(node ** head) {
     char id_buffer[12];   
     uint16_t num = 0;     
-    int temp_input;       
+    
+    // PERBAIKAN: Pemisahan variabel agar scanf %hhu dan %hu akurat
+    uint8_t temp8;
+    uint16_t temp16;       
+    
     uint8_t id_valid = 0;
-    int scan_res;
+    uint8_t scan_res;
+    int i; // C90 Standard
+    uint32_t cek_nilai;
+    node *current;
+    node *newNode;
 
     while (!id_valid) {
         printf_P(PSTR("Masukkan ID Barang Baru: "));
@@ -25,7 +33,7 @@ void tambah(node ** head) {
         }
 
         id_valid = 1; 
-        for (int i = 0; id_buffer[i] != '\0'; i++) {
+        for (i = 0; id_buffer[i] != '\0'; i++) {
             if (!isdigit((unsigned char)id_buffer[i])) {
                 id_valid = 0;
                 break;
@@ -35,7 +43,7 @@ void tambah(node ** head) {
         if (!id_valid) {
             printf_P(PSTR("ID harus berupa angka saja\n\n"));
         } else {
-            uint32_t cek_nilai = strtoul(id_buffer, NULL, 10);
+            cek_nilai = strtoul(id_buffer, NULL, 10);
 
             if (cek_nilai > 65535) {
                 printf_P(PSTR("Maksimal ID 65535\n\n"));
@@ -46,7 +54,7 @@ void tambah(node ** head) {
         }
     }
 
-    node *current = *head;
+    current = *head;
     while (current != NULL) {
         if (current->id_barang == num) {
             printf_P(PSTR("ID %hu sudah ada\n\n"), num);
@@ -55,7 +63,7 @@ void tambah(node ** head) {
         current = current->next;
     }
 
-    node *newNode = (node*)malloc(sizeof(node));
+    newNode = (node*)malloc(sizeof(node));
     if (newNode == NULL) {
         printf_P(PSTR("Kapasitas memori hampir habis\n\n"));
         return;
@@ -69,11 +77,11 @@ void tambah(node ** head) {
 
     while (1) {
         printf_P(PSTR("Masukkan Kategori (0 = Komponen, 1 = Alat, 2 = Lainnya): "));
-        scan_res = scanf("%d", &temp_input); 
+        scan_res = scanf("%hhu", &temp8); // Menggunakan %hhu untuk 8-bit
         while(getchar() != '\n');
 
-        if (scan_res == 1 && (temp_input == 0 || temp_input == 1 || temp_input == 2)) {
-            newNode->kategori = (uint8_t)temp_input; 
+        if (scan_res == 1 && (temp8 == 0 || temp8 == 1 || temp8 == 2)) {
+            newNode->kategori = temp8; 
             break;
         } else {
             printf_P(PSTR("Masukkan 0, 1, atau 2\n\n"));
@@ -82,10 +90,10 @@ void tambah(node ** head) {
 
     while(1){
         printf_P(PSTR("Masukkan Jumlah Stok: "));
-        scan_res = scanf("%d", &temp_input);
+        scan_res = scanf("%hu", &temp16); // Menggunakan %hu karena targetnya 16-bit
         while(getchar() != '\n'); 
-        if(scan_res == 1 && temp_input > 0 && temp_input <= 65535){
-            newNode->jumlah_stock = (uint16_t)temp_input;
+        if(scan_res == 1 && temp16 > 0 && temp16 <= 65535){
+            newNode->jumlah_stock = temp16;
             break;
         } else {
             printf_P(PSTR("Masukkan jumlah valid! (1 - 65535)\n\n"));
@@ -98,11 +106,11 @@ void tambah(node ** head) {
 
     while (1) {
         printf_P(PSTR("Masukkan Status (1 = Tersedia, 0 = Habis): "));
-        scan_res = scanf("%d", &temp_input); 
+        scan_res = scanf("%hhu", &temp8); // Menggunakan %hhu untuk 8-bit
         while(getchar() != '\n');
 
-        if (scan_res == 1 && (temp_input == 0 || temp_input == 1)) { 
-            newNode->status = (uint8_t)temp_input;
+        if (scan_res == 1 && (temp8 == 0 || temp8 == 1)) { 
+            newNode->status = temp8;
             break;
         } else {
             printf_P(PSTR("Masukkan 0 atau 1\n\n"));

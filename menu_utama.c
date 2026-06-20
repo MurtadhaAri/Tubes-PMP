@@ -18,15 +18,17 @@ void TampilkanMenuAplikasi(void) {
     printf_P(PSTR("Masukkan pilihan Anda (1-7): "));
 }
 
-void menu_utama(node **head) {
+void MenuUtama(node **head) {
     int pilihan;
-    uint16_t id_target;
+    int id_target;
 
     printf_P(PSTR("\n--- Arduino Uno C Environment Ready ---\n"));
 
     while(1) {
+        
         TampilkanMenuAplikasi();
         
+        // Validasi input pilihan menu
         if(scanf("%d", &pilihan) != 1) {
             while(getchar() != '\n'); 
             printf_P(PSTR("Input harus berupa angka!\n"));
@@ -37,24 +39,27 @@ void menu_utama(node **head) {
 
         printf_P(PSTR("\n"));
 
+        
         if(pilihan == 1) {
             tambah(head);
         } 
         else if(pilihan == 2) {
-            display(head); 
+            Display(head);
         } 
         else if(pilihan == 3) {
-            display_ringkas(head); 
+            Disp_ringkas(head);
         } 
         else if(pilihan == 4) {
-            update_stock(head); 
+            UpdateStock(head);
         } 
         else if(pilihan == 5) {
-            update_status(head);
+            update_status_rusak(head);
+        } 
+        else if(pilihan == 6) {
             printf_P(PSTR("Masukkan ID Barang yang ingin dihapus: "));
-            if(scanf("%u", &id_target) == 1) {
+            if(scanf("%d", &id_target) == 1) {
                 while(getchar() != '\n');
-                delete_node(head);
+                DeleteNode(head, id_target);
             } else{
                 while(getchar() != '\n');
                 printf_P(PSTR("ID tidak valid!\n"));
@@ -63,11 +68,12 @@ void menu_utama(node **head) {
         else if(pilihan == 7) {
             printf_P(PSTR("Keluar dari sistem. Terima kasih!\n"));
             _delay_ms(500);
-            return; 
+            return; // Keluar dari perulangan dan fungsi MenuUtama
         } 
         else{
             printf_P(PSTR("Pilihan menu tidak tersedia!\n"));
         }
-        _delay_ms(500); 
+        
+        _delay_ms(500); // Delay singkat demi stabilitas Serial Monitor Arduino
     }
 }
