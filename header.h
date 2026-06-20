@@ -1,17 +1,18 @@
 #ifndef HEADER_H   /* Include guard */
 #define HEADER_H
+#include <stdint.h>
 
 typedef struct node {
-    int id_barang;
-    char nama_barang[30];
-    int kategori;
-    int jumlah_stock;
-    short int status;
-    char PIC[15];
-    char PemilikBarang[15];
-    char lokasi_penyimpanan[15];
+    uint16_t id_barang;          
+    char nama_barang[30];        
+    uint8_t kategori;            
+    uint16_t jumlah_stock;       
+    uint8_t status;              
+    char PIC[15];                
+    char PemilikBarang[15];      
+    char lokasi_penyimpanan[15]; 
     struct node * next;
-}node;
+} node;
 
 void tambah(node ** head); // tambah di butnut, parameter sesuaikan (nigo)
 void Del (node **head, int num); // delete at index (moti)
